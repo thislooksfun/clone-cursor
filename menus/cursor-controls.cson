@@ -1,0 +1,18 @@
+# See https://atom.io/docs/latest/creating-a-package#menus for more details
+'context-menu':
+  'atom-text-editor': [
+    { 'label': 'Clone cursor up',   'command': 'clone-cursor:up'   }
+    { 'label': 'Clone cursor down', 'command': 'clone-cursor:down' }
+  ]
+'menu': [
+  {
+    'label': 'Packages'
+    'submenu': [
+      'label': 'Clone Cursor'
+      'submenu': [
+        { 'label': 'Clone cursor up',   'command': 'clone-cursor:up'   }
+        { 'label': 'Clone cursor down', 'command': 'clone-cursor:down' }
+      ]
+    ]
+  }
+]
