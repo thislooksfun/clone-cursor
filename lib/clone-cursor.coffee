@@ -6,9 +6,8 @@ module.exports = CloneCursor =
   
   activate: (state) ->
     @subscriptions = new CompositeDisposable
-    
-    @subscriptions.add atom.commands.add 'atom-workspace', 'clone-cursor:up':         => @up()
-    @subscriptions.add atom.commands.add 'atom-workspace', 'clone-cursor:down':       => @down()
+    @subscriptions.add atom.commands.add 'atom-workspace', 'clone-cursor:up':   => @up()
+    @subscriptions.add atom.commands.add 'atom-workspace', 'clone-cursor:down': => @down()
   
   #Makes sure the @editor instance is accurate
   ensureEditor: ->
