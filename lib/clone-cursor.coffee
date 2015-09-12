@@ -1,7 +1,7 @@
 {CompositeDisposable} = require 'atom'
 
 module.exports = CloneCursor =
-
+  
   editor: null
   
   activate: (state) ->
@@ -13,46 +13,58 @@ module.exports = CloneCursor =
   ensureEditor: ->
     e = atom.workspace.getActiveTextEditor()
     @editor = e if @editor isnt e
+    @editor != null && @editor != undefined
   
   getExtremeCursors: ->
-    @ensureEditor()
+    if !@ensureEditor()
+      console.log "No editor!"
+      return
+    
     if !@editor.hasMultipleCursors()
-      e = @editor.getCursor()
-      [e, e]
+      c = @editor.getLastCursor()
+      [c, c]
     else
-      [first, ..., last] = @editor.getCursorsOrderedByBufferPosition()
-      [first, last]
+      [top, ..., bottom] = @editor.getCursorsOrderedByBufferPosition()
+      [top, bottom]
   
   getFarthestRight: ->
-    @ensureEditor()
+    if !@ensureEditor()
+      console.log "No editor!"
+      return
+    
     cursors = @editor.getCursors()
     cursors.sort (a,b) -> b.getScreenColumn() - a.getScreenColumn()
-    console.log cursors[0].getScreenColumn()
     cursors[0].getScreenColumn()
   
-  done: ->
-    @editor = null
-  
   up: ->
-    @ensureEditor()
+    if !@ensureEditor()
+      console.log "No editor!"
+      return
+    
     [top, bottom] = @getExtremeCursors()
     if top.isLastCursor()
       line = top.getScreenRow() - 1
       return if line < 0
       @editor.addCursorAtScreenPosition([line, @getFarthestRight()])
     else if bottom.isLastCursor()
-      @editor.removeCursor(bottom)
+      #@editor.removeCursor(bottom)
       bottom.destroy()
     @done()
   
   down: ->
-    @ensureEditor()
+    if !@ensureEditor()
+      console.log "No editor!"
+      return
+    
     [top, bottom] = @getExtremeCursors()
     if bottom.isLastCursor()
       line = bottom.getScreenRow() + 1
       return if line >= @editor.getScreenLineCount()
       @editor.addCursorAtScreenPosition([line, @getFarthestRight()])
     else if top.isLastCursor()
-      @editor.removeCursor(top)
+      #@editor.removeCursor(top)
       top.destroy()
     @done()
+  
+  done: ->
+    @editor = null
