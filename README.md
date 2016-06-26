@@ -2,7 +2,7 @@
 
 Allows you to use the keyboard to clone your cursor.
 
-![example gif](https://github.com/thislooksfun/clone-cursor/blob/master/example.gif)
+![example gif](https://raw.githubusercontent.com/thislooksfun/clone-cursor/master/example.gif)
 
 ## Shortcuts
 * `alt-down` Clones the cursor down one line, or removes one cursor downwards if you cloned upwards previously.
