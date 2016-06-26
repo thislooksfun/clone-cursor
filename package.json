@@ -1,7 +1,7 @@
 {
   "name": "clone-cursor",
   "main": "./lib/clone-cursor",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Allows you to use the keyboard to clone your cursor",
   "keywords": [],
   "activationCommands": {},
