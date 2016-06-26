@@ -1,3 +1,6 @@
+## 1.1.2 - The example part 2
+* Hopefully fixed gif linking
+
 ## 1.1.1 - The example
 * Added example gif
 
